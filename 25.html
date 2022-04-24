@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>内置构造函数</title>
+</head>
+<body>
+    <script>
+        // 创建函数
+        // function demo() { 
+        //     console.log('demo');
+        // }
+        // var demo2 = function demo2() {
+        //     console.log('demo2');
+        // }
+        // var demo3 = new Function('a','b','console.log(a+b)');
+        // demo3(10,20)
+        // // console.log(demo3(10,20));
+        
+        // 创建:正则
+        // var reg1 = /^\w{2,6}$/i;
+        // var reg2 = new RegExp('^\\w{2,6}$','i');
+        // var reg3 =RegExp('^\\w{2,6}$','i'); 
+        // console.log(reg1,reg2,reg3);
+        
+
+        // // String Number Boolean
+        // var str = new String(100) 
+        
+        // var str2 = String('100');
+        
+        // console.log(String.prototype);
+        // console.log(str,str2,typeof '100');
+
+        // //:Error
+        // var err = new Error('这是一个错误'); 
+        // var err = Error('这是一个错误'); 
+        // console.log(err);
+
+        // throw new Error('抛出错误');
+        
+        //创建日期
+        var d = new Date();
+        var d2 = Date();
+        var d3 = new Date('2022-4-10');
+       
+        console.log(d,d2,typeof d,typeof d2,d3)
+        console.log(d3.getFullYear(),d3.getMonth(),d3.getDate(),d3.getDate)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滚轮轮播图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box {
+            width: 560px;
+            height: 300px;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+        ul {
+            width: 4000px;
+            height: 300px;
+            font-size: 0;
+            position: relative;
+            left: -560px;
+        }
+        li {
+            width: 560px;
+            height: 300px;
+            display: inline-block;
+        }
+        li:nth-child(1) {
+            background-image: url(images/1.png);
+        }
+        li:nth-child(2) {
+            background-image: url(images/2.png);
+        }
+        li:nth-child(3) {
+            background-image: url(images/3.png);
+        }
+        li:nth-child(4) {
+            background-image: url(images/4.png);
+        }
+        li:nth-child(5) {
+            background-image: url(images/5.png);
+        }
+        li:nth-child(6) {
+            background-image: url(images/6.png);
+        }
+        li:nth-child(7) {
+            background-image: url(images/7.png);
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script src="./js/function.js"></script>
+    <script>
+        var box = document.getElementById('box');
+        var ul = document.getElementsByTagName('ul')[0];
+        //当前图片索引值为
+        var id = 0;
+        // 设置锁
+        var lock = false;   
+        //显示右侧图片
+        function showRight(){
+            if(lock) {
+                return;
+            }
+            lock = true;
+            id++;
+            if(id > 5){
+                id = 0;
+                css(ul,'left','-560px');
+            }
+            // 先执行动画，再调节索引值
+            animate(ul,{left: -560 * (id + 1)},1000,function() {
+                
+                lock = false;
+            })
+        }
+        //显示左侧图片
+        function showLeft(){
+            if(lock) {
+                return;
+            }
+            lock = true;
+            id--;
+            if(id < 0) {
+                id = 5;
+                css(ul,'left',-6 * 560 + 'px');
+            }
+            animate(ul,{left: -560 * (id + 1)},1000,function() {
+                lock = false;
+            })
+        }
+        //滚轮事件回调函数
+        function deal(e) {
+            if(e.wheelDetla) {
+                if (e.wheelDetla > 0) {
+                    showRight();
+                } else {
+                    showLeft();
+                }
+            } else {
+                //如果值为负表示向上划
+                if(e.detail) {
+                    if(e.detail < 0) {
+                        showRight();
+                    } else {
+                        showLeft();
+                    }
+                }
+            }
+        }   
+        // 给box绑定鼠标移入移出事件
+        bindEvent(box,'mouseenter',function(e) {
+            bindEvent(document,'mousewheel',deal)
+        })
+        bindEvent(box,'mouseleave',function(e) {
+            removeEvent(document,'mousewheel',deal)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件</title>
+</head>
+<body>
+    <div tabindex="2">hello</div>
+    <input tabindex="1" type="text">
+    <!-- <input type="text" tabindex="6">
+    <input id="inp2" type="text" tabindex="5">
+    <input type="text" tabindex="7">
+    <ul>
+        <li tabindex="1">1</li>
+        <li tabindex="2">2</li>
+        <li tabindex="3">3</li>
+        <li tabindex="4">4</li>
+    </ul> -->
+    <script>
+        document.onkeydown = function () {
+            console.log('document key down');
+        } 
+        document.getElementsByTagName('div')[0].onkeydown = function() {
+            console.log('div key down');
+        }
+        document.getElementsByTagName('input')[0].onkeydown = function(e) {
+            e.stopPropagation();
+            console.log('input key down');
+        }
+
+        //getElementById getElementByTagName
+        //querySelector querySelectAll
+
+        // var inp2 = document.getElementById("inp2")
+        // inp2.onfocus = function(){
+        //     console.log("inp2 onfocus")
+        // } 
+        // inp2.onblur = function(){
+        //     console.log("inp2 onblur")
+        // } 
+        
+     // document.onkeydown = function(e) {
+        //     console.log('keydown',e.key,e.keyCode);
+        // }
+        // document.onkeyup = function(e){
+        //     console.log('keyup',e.key,e.keyCode);
+        // }
+        // document.onkeypress = function(e){
+        //     console.log('keypress',e.key,e.keyCode);
+        // }
+    </script>
+</body>
+</html>

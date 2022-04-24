@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定事件的兼容性问题</title>
+    <style>
+        #box1 {
+            height: 1000px;
+            padding-top: 200px;
+            background-color: pink;
+        }   
+        #box2 {
+            height: 400px;
+            border: 100px solid gold;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <div id="box1">
+        <div id="box2"></div>
+    </div>
+
+
+    <script>
+        // box2.addEventListener('click',function(e){
+        //     console.log('client',e.clientX,e.clientY);
+        //     console.log('screen',e.screenX,e.screenY);
+        //     console.log('offset',e.offsetX,e.offsetY);
+        //     console.log('page',e.pageX,e.pageY);
+        //     console.log('layer',e.layerX,e.layerY);
+        //     console.log('x,y',e.x,e.y);
+        // })
+
+        var btn = document.getElementById('btn');
+        bindEvent(btn,'click',function(){
+            console.log(1111);
+        })
+        bindEvent(btn,'click',function(){
+            console.log(2222);
+        })
+
+        /**
+         *  @dom 元素
+         *  @type 事件类型
+         *  @fn 事件回调函数
+         **/
+    function bindEvent(dom,type,fn){
+        if(dom.addEventListener) {
+            dom.addEventListener(type,fn);
+        } else if (dom.attachEvent) {
+            dom.attachEvent('on'+type,function(e){
+                fn.call(dom,e);
+            });
+        } else {
+            var oldFn = dom['on' + type];
+            //如果以及绑定过，先执行之前的
+            dom['on' + type] = function (){
+                oldFn && oldFn(window.event);
+                fn(window.event);
+            }
+        }
+    }
+
+        btn['onclick'] = function(){
+            console.log(3333);
+        }
+
+    </script>
+</body>
+</html>

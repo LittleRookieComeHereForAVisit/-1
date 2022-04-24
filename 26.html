@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实现日期,绘制倒计时,y表示年,m表示月,d表示天(正则)</title>
+    <!-- yyyy-mm-dd '2020-07-06' -->
+    <!-- yy abc m abc d 20 abc 7 abc 6 -->
+</head>
+<body>
+    <!-- 倒计时   -->
+    <!-- <h1 id="app"></h1>
+    <script>
+        var start = new Date('2022-4-27').getTime();
+        function main() {
+             // var now = new Date().getTime();
+            var now = Date.now();
+            var time = start - now;
+            // 获取 时,分，秒，天
+            var second = time / 1000;
+            var minute = second / 60;
+            var hour =  minute / 60;
+            var day = hour / 24;
+            console.log(second,minute,hour,day);
+            app.innerHTML = Math.floor(day) + '天: ' + 
+                            Math.floor(hour % 24) + '时: ' + 
+                            Math.floor(minute % 60) + '分: ' + 
+                            Math.floor(second % 60) + '秒.';
+        }
+        // 开始的时候要执行一次
+        main();
+        //定时器
+        setInterval(function() {
+            main();
+        },300)
+    </script> -->
+
+    <script>
+        // 正则匹配
+        // 获取匹配字母的个数
+        // 根据个数确定日期格式
+
+        // var tpl = 'adsf yyyy aid yy f$^$ mm % m ^%&hdladdhflad';
+        var tpl  = '今天是yyyy年mm月,d日';
+        var time = new Date();
+        // 替换
+        var result = tpl
+        .replace(/(y{1,4})/g, function(match, $1) {
+            // 获取年
+            var year = time.getFullYear();
+            
+            // console.log(year,$1,typeof year);
+            // 用总长度减去$1的长度,就是截取位置
+            // console.log(String(year).slice(4 - $1.length))
+            return  String(year).slice(4 - $1.length);
+        })
+        .replace(/(m{1,2})/g, function(match, $1) {
+            var month = String(time.getMonth() + 1);
+            // console.log(month,typeof month, $1);
+            return $1.length === 2 ?  (month.length === 1 ? '0' + month : month) : month;
+        })
+        .replace(/(d{1,2})/g, function(match, $1) {
+            var day = String(time.getDate());
+
+            return $1.length === 2 ? (day.length === 1 ? '0' + day : day) : day;
+        })
+        console.log(result);
+        
+
+    </script>
+</body>
+</html>

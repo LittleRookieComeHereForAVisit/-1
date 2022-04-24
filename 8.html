@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>移除DOM2事件</title>
+    <style>
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+       }
+    </style>
+</head>
+
+   
+<body>
+    <button id="btn">点击按钮,移除box事件</button>
+    <hr>
+    <div id="box"></div>
+
+    <script>
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+
+
+        // function fn(){
+        //     console.log('success');
+        // }
+
+        // box.addEventListener('click',fn);
+
+        // btn.onclick = function() {
+        //     box.removeEventListener('click',fn);
+        // }
+        //     错误示例
+        // box.addEventListener('click',function () {
+        //     console.log('success');
+        // })
+        // btn.onclick = function() {
+        //     box.removeEventListener('click',function () {
+        //     console.log('success');
+        // });
+        // }
+
+    </script>
+</body>
+</html>

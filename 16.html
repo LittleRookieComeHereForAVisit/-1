@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>1111</div>
+    <input type="text">
+    <input type="checkbox">
+    <div class="demo">demo</div>
+    <div class="demo">demo2</div>
+    <script>
+        // console.log(document.querySelector('div'));
+        // console.log(document.querySelectorAll('div'));
+        // console.log(document.querySelector('.demo'));
+        // console.log(document.querySelectorAll('div'));
+        // console.log(document.querySelector(' input[ type = checkbox ]'));
+        // 动态
+        var div1 = document.getElementsByTagName('div');
+        // 静态
+        var div2 = document.querySelectorAll('div');
+        console.log(div1,div2);
+        // 向页面中插入div
+        var div = document.createElement('div');
+        div.innerHTML = 'new div';
+        // 此时div1发生改变而div2内值不变
+        document.body.appendChild(div);
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承:类式继承,组合继承,寄生式继承,寄生式组合继承</title>
+</head>
+<body>
+    
+    <script>
+        //寄生函数
+         function inherit(child,parent) {
+            function F() {
+                // 修改构造函数
+                this.constructor = child;
+            }
+            // 让寄生类的原型等于父类的原型
+            F.prototype = parent.prototype;
+            // 用寄生类实例为子类赋值
+            child.prototype = new F();
+            // 修改构造函数
+            // child.prototype.constructor = child;第二种写法
+            return child;
+            
+        }
+        function People(name,age,sex) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        
+        People.prototype.getName = function() {
+            console.log('我是' + this.name);
+        }
+        People.prototype.getAge = function() {
+            console.log('我今年' + this.age + '岁');
+        }
+        People.prototype.getSex = function() {
+            console.log('我是' + this.sex + '人');
+        }
+
+        function Student(name,age,sex,grade) {
+            // this.name = 'Gary-' + name;
+            //让父类的构造函数，在子类对象(作用域)中执行,并传递子类的参数
+            //构造函数式,复用父类构造函数中，存储属性的逻辑
+            People.call(this,name,age,sex); // 组合,寄生
+            // 存储属性
+            this.grade = grade;
+            // 还可以在继承后，重写属性(如果继承前，重写属性，可能会被覆盖)
+            this.name = 'Gary-' + name;
+        }
+        // // 让子类继承父类的原型,但指向同一个原型对象
+        // Student.prototype = People.prototype;
+        // //重写方法，此时会同时修改父类的方法,存在问题
+        // Student.prototype.getSex = function() {
+        //     console.log('我是' + this.sex + '孩子');
+        // }
+        // Student.prototype = new People(); //类式继承
+        inherit(Student,People); // 寄生
+        // //更正原型上的构造函数
+        // Student.prototype.constructor = Student; //组合继承
+        Student.prototype.getSex = function() {
+            console.log('我是' + this.sex + '孩子');
+        }
+        Student.prototype.getGrade =  function() {
+            console.log('我在上'+this.grade + '年级')
+        }
+        var p1 = new People('老李',20,'男');
+        var s1 = new Student('AD',10,'男',5);
+        p1.getName();
+        p1.getAge();
+        p1.getSex();
+        s1.getName();
+        s1.getAge();
+        s1.getSex();
+        s1.getGrade();
+        console.log(s1.constructor);
+    </script>
+</body>
+</html>

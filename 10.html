@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件对象/拖拽</title>
+    <style>
+        #box1 {
+            position: relative;
+            height: 400px;
+            width: 800px;
+            margin: 30px auto;
+            
+            background-color: pink;
+        }
+        #box2 {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2"></div>
+    </div>
+<script src="./js/function.js"></script> 
+<script>
+    var box1 = document.getElementById('box1');
+    var box2 = document.getElementById('box2');
+    function demo(e) {
+        //获取鼠标位置
+        var x = e.clientX;
+        var y = e.clientY;
+        // console.log(box2._top,box2._left,box2._x,box2._y)
+        
+        var top =  box2._top + y - box2._y;
+        var left = box2._left + x -box2._x;
+        // console.log(top,left);
+        if(top < 0) {
+            top = 0;
+        } else if (top + box2._box2Height > box2._box1Height) {
+            top  = box2._box1Height - box2._box2Height;
+        } if (left < 0) {
+            left = 0;
+        }else if (left + box2._box2Width > box2._box1Width) {
+            left = box2._box1Width - box2._box2Width;
+        }
+        
+        //修改元素位置
+        box2.style.top = top + 'px';
+        box2.style.left = left + 'px';
+        
+    }
+
+
+    bindEvent(box2,'mousedown',function(e) {
+        // 获取定位偏移量
+        box2._top = parseInt(getStyle(box2,'top'));
+        box2._left =parseInt(getStyle(box2,'left'));
+        // 获取鼠标位置信息
+        box2._x = e.clientX;
+        box2._y = e.clientY;
+        // console.log(box2._x,box2._y,box2._top,box2._left)
+
+        box2._box1Width = parseInt(getStyle(box1,'width'));
+        box2._box1Height = parseInt(getStyle(box1,'height'));
+
+        box2._box2Width = parseInt(getStyle(box2,'width'));
+        box2._box2Height = parseInt(getStyle(box2,'height'));
+        // console.log(box2._box1Width,box2._box1Height,box2._box2Width,box2._box2Height)
+
+        //鼠标移动
+        bindEvent(document,'mousemove',demo);
+    })
+
+    bindEvent(box2,'mouseup',function(){
+        removeEvent(document,'mousemove',demo);
+    })
+</script>
+
+    
+</body>
+</html>

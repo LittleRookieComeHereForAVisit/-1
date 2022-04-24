@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        你好啊 nee
+        <div class="one"></div><ul><li>1</li><li>2</li><li>3</li><li>4</li>
+        </ul>
+        <!-- 我是一个注释 -->
+    </div>
+    <div id="app2"></div>
+    <script src="./js/jquery-3.5.1.js"></script>
+    <script src="./js/function.js"></script>
+    <script>
+        var app = document.getElementById('app');
+        // console.log(app.nodeType);
+        // console.log(app.childNodes,app.childNodes[0]);
+        // console.log(app.childNodes.length);
+        function getNode(dom) {
+            // 返回包含所有节点的数组 类数组
+            var arr = [];
+            var reg = /^\s*$/
+            // 遍历所有的节点,过滤掉换行符文本节点
+            for(var i = 0; i < dom.childNodes.length; i++) {
+                // 如果是文本阶段,要过滤掉
+                // 存储节点
+                if(dom.childNodes[i].nodeType === 3){
+                if(!reg.test(dom.childNodes[i].data)){
+                    // 如果不是换行符,存储节点
+                    arr.push(dom.childNodes[i]);
+                }
+                } else {
+                    // 其他类型节点之间存储
+                    arr.push(dom.childNodes[i]);
+                }
+            }
+            // 返回结果
+            return arr;
+        }
+        // // console.log(getNode(app));
+        // var ul = app.getElementsByTagName('ul')[0];
+        // var h1 = document.createElement('h1');
+        // var text = document.createTextNode("你好!");
+        // console.log(ul.childNodes[1]);
+        // // var result = insertAfter(ul,h1,ul.childNodes[1]);
+
+        // var copy  = $('#app').clone();
+        // $('#app2').append(copy);
+        // console.log(copy[0]);
+
+    </script>
+</body>
+</html>

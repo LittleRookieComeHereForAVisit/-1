@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钢琴</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul {
+            width: 700px;
+            margin: 50px auto;
+            height: 400px;
+            border: 1px solid #000;
+            display: flex;
+        }
+        li {
+            flex: 1;
+            border-right: 1px solid #000;
+        }
+        li:last-child {
+            border-right: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <audio autoplay></audio>
+    <script>
+        // var audio = document.createElement('audio');
+        // document.body.appendChild(audio);
+        // audio.src = './audio/武士刀摆动.mp3';
+        // audio.controls = 'true';
+        var audio = document.getElementsByTagName('audio')[0];
+        var lis = document.getElementsByTagName('li');
+
+        document.onkeydown = function(e) {
+            var key = e.key;
+            for(var i = 0; i < lis.length; i++) {
+                lis[i].style.backgroundColor = '';
+            }
+
+            switch(key) {
+                case '1':
+                    audio.src = './audio/武士刀摆动.mp3';
+                    lis[key - 1].style.backgroundColor = 'pink';
+                    break;
+                case '2':
+                    audio.src = './audio/雷电魔法.mp3';
+                    lis[key - 1].style.backgroundColor = 'pink';
+                    break;
+                case '3':
+                    audio.src = './audio/时空转换.mp3';
+                    lis[key - 1].style.backgroundColor = 'pink';
+                    break;
+                case '4':
+                    audio.src = './audio/很多剑攻击.mp3';
+                    lis[key - 1].style.backgroundColor = 'pink';
+                    break;
+                case '5':
+                    audio.src = './audio/界面加载.mp3';
+                    lis[key - 1].style.backgroundColor = 'pink';
+                case '6':
+                    audio.src = './audio/收集奖金.mp3';
+                    lis[key - 1].style.backgroundColor = 'pink';
+                case '7':
+                    audio.src = './audio/使用技能1.mp3';
+                    lis[key - 1].style.backgroundColor = 'pink';
+                default:
+                    console.log('点击错了');
+                    break;
+            }
+        }
+        document.onkeyup = function(e) {
+            var key = e.key;
+            switch(key) {
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                    lis[key - 1].style.backgroundColor = '';
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

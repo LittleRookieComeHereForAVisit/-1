@@ -1,0 +1,130 @@
+.container {
+    width: 1128px;
+    margin: 0 auto;
+}
+
+.status {
+    height: 28px;
+    line-height: 28px;
+    font-size: 16px;
+    color: teal;
+    background-color: blanchedalmond;
+}
+.status .container{
+    display: flex;
+    justify-content: flex-end;
+}
+.status .user {
+    width: 20px;
+    position: relative;
+    margin-left: 50px;
+ 
+}
+.status .user:before{
+    content: "";
+    border-radius: 50%;
+    border: 1px solid teal;
+    position: absolute;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+}
+.status .user::after{
+    content: "";
+    border-radius: 50%;
+    border: 1px solid teal;
+    border-radius: 6px 6px 0 0;
+    border-bottom: none;
+    position: absolute;
+    top: 15px;
+    right: 9px;
+    width: 12px;
+    height: 6px;
+}
+.status .text {
+    margin-right: 15px;
+} 
+
+
+.nav {
+    height: 50px;
+    line-height: 50px;
+    box-shadow: 0 2px 3px rgb(0,0,0,0.1);
+}
+.nav .container {
+    display: flex;
+    align-items: center;
+}
+.nav img{
+    width: 106px;
+    height: 22px;
+    margin-left: 60px;
+}
+.nav ul {
+    display: flex;
+    flex: 1;
+}
+.nav li {
+    margin-right: 55px;
+}
+.nav .search {
+    position: relative;
+}
+
+.nav input {
+    padding: 6px 16px;
+    outline: none;
+    border-radius: 16px;
+    border: 1px solid #999;
+}
+.nav .search .search-hover{
+    position: absolute;
+    font-size: 10px;
+    top: 20px;
+    right: 30px; 
+    line-height: 1; 
+}
+.nav .search .search-hover span{
+    margin-left: 6px;
+    background-color: #ddd;
+    padding: 2px 5px;
+}
+.nav .search:before{
+    content: "";
+    border-radius: 50%;
+    border: 2px solid teal;
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    top: 14px;
+    left: 148px;
+}
+.nav .search::after{
+    content: "";
+    position: absolute;
+    border: 2px solid teal;
+    height: 6px;
+    top: 25px;
+    left: 157px;
+    transform:rotate(-30deg)
+}
+.banner .container {
+    position: relative;
+    height: 555px;
+    background-color: #ccc;
+}
+
+.banner .arrow {
+    position: absolute;
+    width: 42px;
+    height: 42px;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 50%;
+    margin-top: -21px;
+    right: 30px;
+}
+
+.banner .aroow1 {
+    left: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+} 

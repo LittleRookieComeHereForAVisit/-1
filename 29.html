@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>location,navigator,screen,history</title>
+</head>
+<body>
+    <button>刷新</button>
+    <script>
+        // console.log(location);
+
+        // console.log(location.hash);
+        // console.log(location.href);
+        
+        // location.hash = '#eee';
+        document.getElementsByTagName('button')[0].onclick = function() {
+                location.reload ();
+        }
+        
+
+        console.log(navigator);
+        // 判断火狐浏览器
+        // var e = /firefox/i.test(navigator.userAgent);
+        // console.log(e);
+        console.log(screen);
+
+        console.log(history);
+        console.log(history.length,document.referrer);
+    </script>
+</body>
+</html>

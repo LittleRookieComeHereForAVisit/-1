@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <hr>
+    <div id="box"></div>
+</body>
+<script src="./js/function.js"></script>
+<script>
+    var btn = document.getElementById('btn');
+    var box = document.getElementById('box');
+
+    btn.onclick  = function(){
+        animate(box,{
+            left: '400px',
+            top: 400
+        }, 1000, function(){
+            console.log('success')
+        });
+    }
+    function animate(dom,obj,time,callback){
+        var count = 0;
+        //计算总次数 x,不取整不影响结果
+        var total = parseInt((time || 1000) / 30);
+        
+        var style = {}
+        for(var key in obj){
+            style[key] = parseInt(getStyle(dom,key));
+        }
+        var step = {}
+        for(var key in obj){
+            step[key] = (parseInt(obj[key]) - style[key]) / total;     
+        }
+        
+        var tiembar = setInterval(function(){
+            //更新次数
+            count++;
+            for(var key in step) {
+                //修改样式
+                dom.style[key] = style[key] + step[key] * count + 'px';
+            }
+            //判断终止条件
+            if(count >= total){
+                for(var key in obj) {
+                    dom.style[key] = typeof obj[key] === 'string' ? obj[key] : obj[key] + 'px';
+                }   
+                //清除样式
+                clearInterval(tiembar);
+                // if(callback){
+                //     callback();
+                // }
+                callback && callback();           
+            }
+        },20)
+    }
+</script>
+</html>

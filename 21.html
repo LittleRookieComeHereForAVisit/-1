@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的分类</title>
+</head>
+<body>
+    <script>
+        // function createPerson(name,sex,age) {
+        //     var obj = {};
+        //     obj.name = name;
+        //     obj.sex  = sex;
+        //     obj.age = age;
+        //     return obj;
+        // }
+
+        // var p = createPerson('小白','男',20);
+        // console.log(p);
+
+        // function createDog(name,sex,age) {
+        //     var obj = {};
+        //     obj.name = name;
+        //     obj.sex  = sex;
+        //     obj.age = age;
+        //     return obj;
+        // }
+
+        // var d = createDog('京巴','公',5);
+        // console.loh(d);
+
+        // 通过函数创建对象无法区别类别
+        // 为了区分对象的类别,我们要使用类
+
+        //定义构造函数:构造函数与普通函数一样,只不过通常将首字母大写
+        function Person() {}
+        function Dog() {}
+        
+        var p = new Person();
+        var d = new Dog();
+        console.log(p,d);
+    </script>
+</body>
+</html>
